@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+
+
+</h:head>
+
+<h:body>
+
+<script type="text/javascript">
+    function handleLoginRequest(xhr, status, args) {
+        if(args.validationFailed || !args.loggedIn) {
+            PF('dlg').jq.effect("shake", {times:5}, 100);
+        }
+        else {
+            PF('dlg').hide();
+            $('#loginLink').fadeOut();
+        }
+    }
+</script>
+
+	<h:form>
+		<p:growl id="growl" showDetail="true" sticky="true" />
+	
+		<p:dialog header="Login" widgetVar="dlg" resizable="false" modal="true" visible="true">
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="username" value="CPF:" />
+				<p:inputText id="username" value="#{LoginBean.username}"
+					required="true" label="username" />
+
+				<h:outputLabel for="password" value="Password:" />
+				<p:password id="password" value="#{LoginBean.password}"
+					required="true" label="password" />
+
+				<f:facet name="footer">
+					<p:commandButton value="Login" update="@form"
+						action="#{LoginBean.login}"
+						oncomplete="handleLoginRequest(xhr, status, args)" />
+				</f:facet>
+			</h:panelGrid>
+		</p:dialog>
+	</h:form>
+
+</h:body>
+</html>
