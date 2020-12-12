@@ -1,0 +1,330 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="templatePrincipal.xhtml">
+
+
+	<ui:define name="cabecalho">
+		<h2>Estatisticas</h2>
+	</ui:define>
+	<ui:define name="conteudo">
+
+		<h:form>
+			<h:panelGrid columns="4" cellpadding="5" style="margin-top: 10px">
+				<h:outputLabel for="name" value="Procurar registro do pedido"
+					style="font-weight:bold; font-family: arial, Sans-serif;" />
+				<p:inputText id="name" value="#{basicView.text}" />
+				<p:commandButton value="Pesquisar"/>
+				<h:outputText id="display" value="#{basicView.text}" />
+			</h:panelGrid>
+		</h:form>
+
+
+		<h:form id="registroPedidos1">
+			<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+
+			<p:dataTable id="registroPedidos2" var="registroPedidos"
+				value="#{dtSelectionView.registroPedidos}">
+
+				<f:facet name="header">
+            Registro de pedidos
+        </f:facet>
+
+				<p:column headerText="Nome do Cliente">
+					<h:outputText value="#{registroPedidos.nomeDoCliente}" />
+
+				</p:column>
+
+
+				<p:column headerText="quantidade">
+					<h:outputText value="#{registroPedidos.quantidade}" />
+
+				</p:column>
+
+
+				<p:column headerText="Preço">
+					<h:outputText value="#{registroPedidos.preco}" />
+
+				</p:column>
+
+
+				<p:column headerText="Data">
+					<h:outputText value="#{registroPedidos.data}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+
+
+
+		<h:form id="produtosMaisVendidos1">
+			<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+
+			<p:dataTable id="produtosMaisvendidos2" var="produtosMaisVendidos"
+				value="#{dtSelectionView.produtosMaisVendidos}">
+
+				<f:facet name="header">
+           Produtos mais vendidos
+        </f:facet>
+
+				<p:column headerText="Nome">
+					<h:outputText value="#{produtosMaisVendidos.nome}" />
+
+				</p:column>
+
+				<p:column headerText="Quantidade">
+					<h:outputText value="#{produtosMaisVendidos.quantidade}" />
+
+				</p:column>
+
+
+				<p:column headerText="Mês">
+					<h:outputText value="#{produtosMaisVendidos.mes}" />
+
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+
+		<h:form id="lançamentosDoFluxoDeCaixa1">
+
+			<p:panel>
+				<p:growl id="msgs" showDetail="true"
+					skipDetailIfEqualsSummary="true" />
+
+				<h3 style="margin-top: 0">Lançamentos do fluxo de caixa</h3>
+				<p:tabView>
+					<p:tab title="Nova entrada">
+						<h:panelGrid columns="2" cellpadding="10">
+               
+               
+               Data <h:inputText value="xx/MM/yyyy" />
+       	
+       	
+               
+               Valor <h:inputText value="R$0,00" />
+               
+               Descrição
+              <h:selectOneMenu
+								style="width:100%; box-sizing: border-box;">
+
+
+								<f:selectItem itemLabel="Capital de Investimento de fora"
+									itemvalue="investimentoFora" />
+								<f:selectItem itemLabel="Outros recebimentos"
+									itemvalue="outrosRecebimentos" />
+
+								<f:selectItem itemLabel="Selecione o item" />
+
+							</h:selectOneMenu>
+
+						</h:panelGrid>
+					</p:tab>
+
+
+					<p:tab title="Nova saida">
+						<h:panelGrid columns="2" cellpadding="10">
+               
+               
+               Data <h:inputText value="xx/MM/yyyy" />
+               Valor <h:inputText value="R$0,00" />
+               
+               Descrição
+               <h:selectOneMenu
+								style="width:100%; box-sizing: border-box;">
+
+
+								<f:selectItem itemLabel="Reinvestimento do lucro"
+									itemvalue="investimentoDoLucro" />
+								<f:selectItem itemLabel="Retirada do sócio"
+									itemvalue="retiradaDoSocio" />
+								<f:selectItem itemLabel="Transferencia Bancaria"
+									itemValue="transferenciaBancaria" />
+								<f:selectItem itemLabel="Despesas Financeiras"
+									itemValue="despesasFinanceiras" />
+								<f:selectItem itemLabel="Fornecedores" itemValue="fornecedores" />
+								<f:selectItem itemLabel="Impostos" itemValue="impostos" />
+								<f:selectItem itemLabel="Despesas com gasto pessoal"
+									itemValue="despesaComGastoPessoal" />
+								<f:selectItem itemLabel="Saque" itemValue="saque" />
+								<f:selectItem itemLabel="Despesas Administrativas"
+									itemValue="despesasAdministrativas" />
+								<f:selectItem itemLabel="Contador"
+									itemValue="despesasAdministrativas" />
+								<f:selectItem itemLabel="Outras despesas"
+									itemValue="outrasDespesas" />
+
+								<f:selectItem itemLabel="Selecione o item" />
+
+							</h:selectOneMenu>
+
+
+						</h:panelGrid>
+					</p:tab>
+
+				</p:tabView>
+
+				<p:commandButton value="enviar" />
+
+			</p:panel>
+
+
+		</h:form>
+
+		<h:form id="fluxoDeCaixa1">
+
+
+			<p:dataTable id="fluxoDeCaixa"
+				value="#{dtSelectionView.fluxoDeCaixa}">
+
+				<f:facet name="header">
+	            Fluxo de caixa
+	        </f:facet>
+
+				<p:column headerText="Data">
+					<h:outputText value="#{fluxoDeCaixa.data}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Descrição">
+					<h:outputText value="#{fluxoDeCaixa.descricao}" />
+
+				</p:column>
+
+				<p:column headerText="valor">
+					<h:outputText value="#{fluxoDeCaixa.valor}" />
+
+				</p:column>
+
+				<p:column headerText="Fluxo">
+					<h:outputText value="#{fluxoDeCaixa.fluxo}" />
+
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+
+		<style type="text/css">
+.ui-row-editor .ui-row-editor-pencil {
+	margin-left: 8px;
+}
+</style>
+
+
+		<h:form id="gerenciamentoDeProduto">
+			<p:growl id="msgs" showDetail="true" />
+
+			<p:dataTable id="gerenciamentoDeProduto1"
+				var="gerenciamentoDeProduto"
+				value="#{dtEditView.gerenciamentoDeProduto1}" editable="true"
+				style="margin-bottom:20px">
+				<f:facet name="header">
+            Gerenciamento de produto
+        </f:facet>
+
+				<p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}"
+					update=":gerenciamentoDeProduto:msgs" />
+				<p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}"
+					update=":gerenciamentoDeProduto:msgs" />
+
+				<p:column headerText="Id">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{gerenciamentoDeProduto.id}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText id="modelInput" value="#{gerenciamentoDeProduto.id}"
+								style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Produto">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{gerenciamentoDeProduto.produto}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{gerenciamentoDeProduto.Produto}"
+								style="width:100%" label="Produto" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Valor">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{gerenciamentoDeProduto.valor}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{gerenciamentoDeProduto.valor}"
+								style="width:100%" label="valor" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Quantidade">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{gerenciamentoDeProduto.qtd}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{gerenciamentoDeProduto.qtd}"
+								style="width:100%" label="qtd" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:35px">
+					<p:rowEditor />
+				</p:column>
+			</p:dataTable>
+
+		</h:form>
+
+
+		<h:form>
+
+			<p:panel>
+				<p:growl id="msgs" showDetail="true"
+					skipDetailIfEqualsSummary="true" />
+
+				<h3 style="margin-top: 0">Lançamentos do fluxo de caixa</h3>
+				<p:tabView>
+					<p:tab title="Gerenciamento de taxa do cartão de crédito">
+						<h:panelGrid columns="2" cellpadding="10">
+               
+               
+               Porcentagem da taxa de cartão de credito <h:inputText
+								value="X%" />
+       	
+               Taxa atual: <h:outputText value="1,90%" />
+
+
+						</h:panelGrid>
+					</p:tab>
+
+
+
+				</p:tabView>
+
+				<p:commandButton value="enviar" />
+
+			</p:panel>
+
+
+		</h:form>
+
+
+
+
+
+	</ui:define>
+</ui:composition>
+</html>
