@@ -36,16 +36,26 @@
 		<p:fieldset legend="Resultado da Pesquisa" style="width: 1000px; margin-top:10px;">
 			<p:dataTable value="#{PedidoBean.listaPedidos}" var="pedido">
 
+				<p:column headerText="Nº Pedido" style="color: black">
+					<h:outputText value="#{pedido.id}" />
+				</p:column>
+				
+				<p:column headerText="Cliente" style="color: black">
+					<h:outputText value="#{pedido.cliente.nome}" />
+				</p:column>
+
+				<p:column headerText="Data" style="color: black">
+					<h:outputText value="#{pedido.dataPedido}" >
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+				
 				<p:column headerText="Valor" style="color: black">
 					<h:outputText value="#{pedido.valorTotal}" />
 				</p:column>
 
-				<p:column headerText="Data" style="color: black">
-					<h:outputText value="#{pedido.dataPedido}" />
-				</p:column>
-				
-				<p:column headerText="Remover" style="color: purple">
-					<p:commandButton value="Remover" action="#{PedidoBean.removerPedido}" update="@form">
+				<p:column headerText="Detalhes" style="color: purple">
+					<p:commandButton value="Detalhar" action="#{PedidoBean.editarPedido}" update="@form">
 						<f:setPropertyActionListener value="#{pedido.id}" target="#{PedidoBean.idPedido}" />
 					</p:commandButton>
 				</p:column>

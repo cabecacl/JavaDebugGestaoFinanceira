@@ -94,8 +94,8 @@ public class PedidoBean {
 	}
 	
 	public void pesquisarPedidos() {
-//		this.listaPedidos = this.pedidoDAO.pesquisarPedidos(pedido, dataInicio, dataFim);
-		this.listaPedidos = this.pedidoDAO.listarTodosPedidos();
+		this.listaPedidos = this.pedidoDAO.pesquisarPedidos(pedido, dataInicio, dataFim);
+//		this.listaPedidos = this.pedidoDAO.listarTodosPedidos();
 		System.out.println("-- pesquisou --");
 	}
 	

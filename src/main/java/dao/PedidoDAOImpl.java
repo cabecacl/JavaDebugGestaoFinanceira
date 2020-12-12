@@ -8,6 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import org.hibernate.jpa.criteria.predicate.IsEmptyPredicate;
+
 import entidade.Cliente;
 import entidade.Pedido;
 import entidade.Produto;
@@ -133,8 +135,7 @@ public class PedidoDAOImpl implements PedidoDAO {
 
 		EntityManager ent = JpaUtil.getEntityManager();
 
-		Query query = ent.createQuery("SELECT DISTINCT p FROM Pedido p "
-													 + " LEFT JOIN p.sorvetes s where 1=1 " + 
+		Query query = ent.createQuery(" FROM Pedido p where 1=1 " + 
 													this.montarWherePedido(pedido, dataInicio, dataFim));
 
 		List<Pedido> pedidos = query.getResultList();
@@ -148,18 +149,21 @@ public class PedidoDAOImpl implements PedidoDAO {
 		String where = "";
 		SimpleDateFormat dataSimples = new SimpleDateFormat("dd/MM/yyyy");
 		
-		/*
-		 * if(pedido.getNomeCliente() != null && !pedido.getNomeCliente().isEmpty()) {
-		 * where += " and upper(p.nomeCliente) like upper('%" + pedido.getNomeCliente()
-		 * + "%')"; }
-		 */
-		
-		if(dataInicio != null && dataFim != null) {
-			where += " and p.dataPedido BETWEEN TO_DATE('" + dataSimples.format(dataInicio) + "', 'DD/MM/YYYY') and "
-					+ " TO_DATE('" + dataSimples.format(dataFim) + "', 'DD/MM/YYYY')";
+		if(pedido.getId() > 0) {
+			where += " and p.id = " + pedido.getId();
+		}else {
+			if(dataInicio != null && dataFim != null) {
+				where += " and p.dataPedido BETWEEN TO_DATE('" + dataSimples.format(dataInicio) + "', 'DD/MM/YYYY') and "
+						+ " TO_DATE('" + dataSimples.format(dataFim) + "', 'DD/MM/YYYY')";
+			}
+			
+			if(pedido.getCliente() != null && 
+   			   pedido.getCliente().getNome() != null && 
+   			   !pedido.getCliente().getNome().isEmpty()) {
+				where += " and upper(p.cliente.nome) like upper('%" + pedido.getCliente().getNome() + "%')";
+				
+			}
 		}
-		
-		where += " order by p.dataPedido, p.nomeCliente ASC ";
 		
 		return where;
 		
