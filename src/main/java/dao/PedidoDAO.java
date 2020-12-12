@@ -21,4 +21,5 @@ public interface PedidoDAO {
 	public void excluirProduto(Produto produto);
 		
 	public List<Pedido> pesquisarPedidos(Pedido pedido, Date dataInicio, Date dataFim);
+
 }
