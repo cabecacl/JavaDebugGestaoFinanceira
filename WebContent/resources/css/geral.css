@@ -12,3 +12,7 @@ body {
 .fundo_titulo{
 	background-color: red;
 }
+
+.ui-fieldset-legend{
+	background-color: red !important;
+}

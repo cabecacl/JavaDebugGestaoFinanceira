@@ -14,23 +14,18 @@
 		<p:growl id="growl" showDetail="true" sticky="true" />
 
 		<p:panelGrid columns="4" style="width: 100%">
-			<p:outputLabel value="Cliente: " />
-			<p:selectOneMenu value="#{PedidoBean.pedido.cliente.id}" >
-				<f:selectItem itemLabel="Selecione um ..." itemValue="" />
-				<f:selectItems value="#{PedidoBean.listaClientes}" var="cliente" 
-					itemLabel="#{cliente.nome}" itemValue="#{cliente.id}">
-				</f:selectItems>
-			</p:selectOneMenu>
+			<p:outputLabel value="Nº Pedido: " />
+			<p:inputText value="#{PedidoBean.pedido.id}" />
 			
-			<p:outputLabel value="Data do Pedido: " />
-			<p:calendar value="#{PedidoBean.pedido.dataPedido}" />
+			<p:outputLabel value="Data Inicio: " />
+			<p:calendar value="#{PedidoBean.dataInicio}" showOn="button"/>
 
-			<p:outputLabel value="Valor: " />
-			<p:inputNumber value="#{PedidoBean.pedido.valorTotal}" />
+			<p:outputLabel value="Cliente: " />
+			<p:inputText value="#{PedidoBean.pedido.cliente.nome}" />
 			
-			<p:outputLabel value="Retirar em loja: " />
-			<p:selectBooleanCheckbox value="#{PedidoBean.retirarEmLoja}" itemLabel="Retirar em Loja?"/>
-			
+			<p:outputLabel value="Data Fim: " />
+			<p:calendar value="#{PedidoBean.dataFim}" showOn="button"/>
+
 		</p:panelGrid>
 
 		<p:panelGrid columns="1" style="width: 100%; margin-top:10px">
