@@ -2,14 +2,18 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
+
+	<h:outputStylesheet library="css" name="geral.css" />
+
 	<title>Projeto Controle Financeiro JavaDebug</title>
 </h:head>
 <h:body>
+<h:form>
 	<table border="2" style="width: 100%"> 
 		<tr>
 			<td colspan="2">
 				<ui:insert name="cabecalho">
-					<h1 align="center">Projeto Controle Financeiro JavaDebug</h1>
+					<h1 align="center" class="fundo_titulo">Projeto Controle Financeiro JavaDebug</h1>
 				</ui:insert>
 			</td>
 		</tr>
@@ -27,13 +31,6 @@
 		</tr>
 	</table>
 
-
-
-
-
-
-
-
-
+</h:form>
 </h:body>
 </html>

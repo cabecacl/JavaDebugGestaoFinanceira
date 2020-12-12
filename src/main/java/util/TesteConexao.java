@@ -13,18 +13,18 @@ public class TesteConexao {
 		
 		System.out.println(ent.isOpen());
 		
-		Usuario usuario = new Usuario();
-		usuario.setCpf("12345");
-		usuario.setNome("O menino chapado");
-		usuario.setSenha("112233");
-		
-		EntityTransaction tr = ent.getTransaction();
-		tr.begin();
-		ent.persist(usuario);
-		
-		tr.commit();
-		ent.close();
-		System.out.println("-- inseriru --");
+//		Usuario usuario = new Usuario();
+//		usuario.setCpf("12345");
+//		usuario.setNome("O menino chapado");
+//		usuario.setSenha("112233");
+//		
+//		EntityTransaction tr = ent.getTransaction();
+//		tr.begin();
+//		ent.persist(usuario);
+//		
+//		tr.commit();
+//		ent.close();
+//		System.out.println("-- inseriru --");
 
 	}
 

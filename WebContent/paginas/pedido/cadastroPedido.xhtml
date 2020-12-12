@@ -1,0 +1,79 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<ui:composition template="/templatePrincipal.xhtml">
+	<ui:define name="cabecalho">
+		<h1 align="center">Cadastro de Pedido</h1>
+	</ui:define>
+	<ui:define name="conteudo">
+	
+		<p:growl id="growl" showDetail="true" sticky="true" />
+	
+		<p:panelGrid columns="4" style="width: 100%">
+			<p:outputLabel value="Cliente: " />
+			<p:selectOneMenu value="#{PedidoBean.pedido.cliente.id}" >
+				<f:selectItem itemLabel="Selecione um ..." itemValue="" />
+				<f:selectItems value="#{PedidoBean.listaClientes}" var="cliente" 
+					itemLabel="#{cliente.nome}" itemValue="#{cliente.id}">
+				</f:selectItems>
+			</p:selectOneMenu>
+			
+			<p:outputLabel value="Data do Pedido: " />
+			<p:calendar value="#{PedidoBean.pedido.dataPedido}" />
+
+			<p:outputLabel value="Valor: " />
+			<p:inputNumber value="#{PedidoBean.pedido.valorTotal}" />
+			
+			<p:outputLabel value="Retirar em loja: " />
+			<p:selectBooleanCheckbox value="#{PedidoBean.retirarEmLoja}" itemLabel="Retirar em Loja?"/>
+			
+		</p:panelGrid>
+		
+		<p:fieldset legend="Endereço Entrega">
+			<p:panelGrid columns="4" style="width: 100%">
+				<p:outputLabel value="Rua: " />
+				<p:inputText value="#{PedidoBean.pedido.rua}"/>
+				
+				<p:outputLabel value="Numero: " />
+				<p:inputText value="#{PedidoBean.pedido.numero}"/>
+				
+				<p:outputLabel value="Bairro: " />
+				<p:inputText value="#{PedidoBean.pedido.bairro}"/>
+				
+				<p:outputLabel value="Cidade: " />
+				<p:inputText value="#{PedidoBean.pedido.cidade}"/>
+				
+				<p:outputLabel value="Cep: " />
+				<p:inputText value="#{PedidoBean.pedido.cep}"/>
+				
+				<p:outputLabel value="Complemento: " />
+				<p:inputText value="#{PedidoBean.pedido.complemento}"/>
+				
+				<p:outputLabel value="Data Entrega: " />
+				<p:calendar value="#{PedidoBean.pedido.dataEntrega}" showOn="button" />
+				
+			</p:panelGrid>
+		</p:fieldset>
+		<p:fieldset legend="Pagamento">
+			<p:panelGrid columns="4" style="width: 100%">
+				<p:outputLabel value="Forma de Pagamento: " />
+				<p:selectOneMenu value="#{PedidoBean.pedido.formaPagamento}" >
+					<f:selectItem itemLabel="Selecione um ..." itemValue="" />
+					<f:selectItem itemLabel="Dinheiro" itemValue="D" />
+					<f:selectItem itemLabel="Cartão" itemValue="C" />
+				</p:selectOneMenu>
+				
+				<p:outputLabel value="OBS: " />
+				<p:inputTextarea value="#{PedidoBean.pedido.obs}" rows="3"/>
+			</p:panelGrid>
+		</p:fieldset>
+		<p:commandButton actionListener="#{PedidoBean.salvarPedido}" update="@form" value="SALVAR" />
+			
+	</ui:define>
+</ui:composition>
+
+</html>

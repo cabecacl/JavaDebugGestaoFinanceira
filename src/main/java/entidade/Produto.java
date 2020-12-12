@@ -5,14 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
-@Entity(name = "PRODUTO")
+@Entity
+@Table(name = "PRODUTO")
 public class Produto {
 	
 	@Id
 	@Column(name ="ID_PRODUTO")
-	@GeneratedValue(generator = "SEG_ID_PRODUTO")
-	@SequenceGenerator(name = "SEG_ID_PRODUTO", sequenceName = "SEG_ID_PRODUTO", allocationSize = 1)
+	@GeneratedValue(generator = "SEQ_ID_PRODUTO")
+	@SequenceGenerator(name = "SEQ_ID_PRODUTO", sequenceName = "SEQ_ID_PRODUTO", allocationSize = 1)
 	private Integer id;
 	@Column(name ="DESCRICAO")
 	private String descricao;

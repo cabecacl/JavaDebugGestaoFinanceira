@@ -1,0 +1,14 @@
+@charset "utf-8";
+
+body {
+	margin-left: 0px;
+    margin-top: 0px;
+	font-family: "Helvetica-Neve",Helvetica, Arial, sans-serif;
+	margin: 20px;
+	background-image: url("Fundo.png");
+	color: #4a94ff ;
+	
+}
+.fundo_titulo{
+	background-color: red;
+}
